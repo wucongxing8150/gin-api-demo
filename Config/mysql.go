@@ -1,5 +1,7 @@
 package Config
 
+import "github.com/spf13/viper"
+
 type Mysql struct {
 	Host         string `mapstructure:"host" json:"host" yaml:"host"`                           // 服务器地址
 	Port         int    `mapstructure:"port" json:"port" yaml:"port"`                           // 端口
@@ -13,20 +15,26 @@ type Mysql struct {
 
 func GetDevMysql() *Mysql {
 	return &Mysql{
-		Host:     "localhost",
-		Port:     3306,
-		DbName:   "project",
-		Username: "root",
-		Password: "Wucongxing1..",
+		Host:         viper.GetString("dev-database.host"),
+		Port:         viper.GetInt("dev-database.port"),
+		DbName:       viper.GetString("dev-database.dbName"),
+		Username:     viper.GetString("dev-database.userName"),
+		Password:     viper.GetString("dev-database.password"),
+		MaxIdleConns: viper.GetInt("dev-database.mysql-max-idle-cons"),
+		MaxOpenConns: viper.GetInt("dev-database.mysql-max-open-cons"),
+		Debug:        viper.GetBool("dev-database.mysql-debug"),
 	}
 }
 
 func GetMasterMysql() *Mysql {
 	return &Mysql{
-		Host:     "39.105.190.228",
-		Port:     30004,
-		DbName:   "yami_bbc",
-		Username: "devops",
-		Password: "KDF^&*#djfk1",
+		Host:         viper.GetString("dev-database.host"),
+		Port:         viper.GetInt("dev-database.port"),
+		DbName:       viper.GetString("dev-database.dbName"),
+		Username:     viper.GetString("dev-database.userName"),
+		Password:     viper.GetString("dev-database.password"),
+		MaxIdleConns: viper.GetInt("dev-database.mysql-max-idle-cons"),
+		MaxOpenConns: viper.GetInt("dev-database.mysql-max-open-cons"),
+		Debug:        viper.GetBool("dev-database.mysql-debug"),
 	}
 }

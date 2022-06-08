@@ -2,7 +2,9 @@ package Router
 
 import (
 	"fmt"
+	"gin-api-demo/App/Api/Middlewares/RateLimit"
 	"net/http"
+	"time"
 
 	"gin-api-demo/App/Api/Middlewares/Auth"
 	"gin-api-demo/App/Api/Middlewares/Corss"
@@ -12,7 +14,7 @@ import (
 
 type Option func(*gin.Engine)
 
-// 初始化
+// Init 初始化
 func Init() *gin.Engine {
 
 	r := gin.Default()
@@ -36,6 +38,9 @@ func Init() *gin.Engine {
 
 	// 鉴权中间件
 	r.Use(Auth.VerifyAuth())
+
+	// 限流 令牌桶
+	r.Use(RateLimit.RateLimit(1*time.Second, 100))
 
 	return r
 }
