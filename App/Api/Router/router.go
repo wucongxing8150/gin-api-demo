@@ -2,6 +2,7 @@ package Router
 
 import (
 	"fmt"
+	"gin-api-demo/App/Api/Controller/Demo"
 	"gin-api-demo/App/Api/Middlewares/RateLimit"
 	"net/http"
 	"time"
@@ -41,6 +42,16 @@ func Init() *gin.Engine {
 
 	// 限流 令牌桶
 	r.Use(RateLimit.RateLimit(1*time.Second, 100))
+
+	demo := r.Group("/demo")
+	{
+		// 邮寄地址
+		demoGroup := demo.Group("/demo")
+		{
+			// 邮寄地址列表
+			demoGroup.POST("list", Demo.List)
+		}
+	}
 
 	return r
 }

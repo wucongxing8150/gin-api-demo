@@ -2,6 +2,7 @@ package Cores
 
 import (
 	"gin-api-demo/Cores/mysql"
+	"gin-api-demo/Cores/redis"
 	"gin-api-demo/Cores/viper"
 )
 
@@ -13,5 +14,6 @@ func Init() {
 	mysql.Init()
 
 	// 初始化redis连接
+	redis.Init()
 
 }
