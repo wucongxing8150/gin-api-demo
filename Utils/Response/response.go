@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	ERROR   = 1
-	SUCCESS = 0
+	ERROR   = 10201
+	SUCCESS = 10200
 )
 
 type Response struct {
