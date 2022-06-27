@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gin-api-demo/App/Api/Controller/Demo"
 	"gin-api-demo/App/Api/Middlewares/RateLimit"
+	"github.com/spf13/viper"
 	"net/http"
 	"time"
 
@@ -41,7 +42,7 @@ func Init() *gin.Engine {
 	r.Use(Auth.VerifyAuth())
 
 	// 限流 令牌桶
-	r.Use(RateLimit.RateLimit(1*time.Second, 100))
+	r.Use(RateLimit.RateLimit(viper.GetDuration("rate-limit.fill-interval")*time.Second, viper.GetInt64("rate-limit.capacity")))
 
 	demo := r.Group("/demo")
 	{

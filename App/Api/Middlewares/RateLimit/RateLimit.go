@@ -10,6 +10,7 @@ import (
 // RateLimit
 // @Description: 令牌桶限流
 func RateLimit(fillInterval time.Duration, cap int64) func(c *gin.Context) {
+	// 每个 fillInterval 一个令牌的速率填充，直到给定的最大容量
 	bucket := ratelimit.NewBucket(fillInterval, cap)
 	return func(c *gin.Context) {
 		// 如果取不到令牌 直接返回

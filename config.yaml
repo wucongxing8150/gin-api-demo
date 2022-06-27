@@ -35,4 +35,7 @@ dev-redis:
   password: Wucongxing1..
   pool-size: 100
 
-
+# 限流配置
+rate-limit:
+  fill-interval: 1 # 填充间隔时间 s为最小单位
+  capacity: 100 # 容量
