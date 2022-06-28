@@ -38,6 +38,7 @@ func VerifyAuth() gin.HandlerFunc {
 
 		for _, v := range allowInterface {
 			if RequestURI == v {
+				c.Next()
 				return
 			}
 		}

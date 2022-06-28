@@ -39,3 +39,8 @@ dev-redis:
 rate-limit:
   fill-interval: 1 # 填充间隔时间 s为最小单位
   capacity: 100 # 容量
+
+# jwt配置
+jwt:
+  sign-key: 123456 # 私钥
+  bearer: false # 是否使用Bearer头

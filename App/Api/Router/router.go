@@ -3,6 +3,7 @@ package Router
 import (
 	"fmt"
 	"gin-api-demo/App/Api/Controller/Demo"
+	"gin-api-demo/App/Api/Middlewares/JwtAuth"
 	"gin-api-demo/App/Api/Middlewares/RateLimit"
 	"github.com/spf13/viper"
 	"net/http"
@@ -38,11 +39,14 @@ func Init() *gin.Engine {
 	// 跨域中间件
 	r.Use(Corss.Cors())
 
+	// token验证中间件
+	r.Use(JwtAuth.JwtAuth())
+
 	// 鉴权中间件
 	r.Use(Auth.VerifyAuth())
 
 	// 限流 令牌桶
-	r.Use(RateLimit.RateLimit(viper.GetDuration("rate-limit.fill-interval")*time.Second, viper.GetInt64("rate-limit.capacity")))
+	r.Use(RateLimit.RateLimit(time.Duration(viper.GetInt("rate-limit.fill-interval"))*time.Second, int64(viper.GetInt("rate-limit.capacity"))))
 
 	demo := r.Group("/demo")
 	{
