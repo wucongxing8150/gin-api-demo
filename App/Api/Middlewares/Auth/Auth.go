@@ -22,6 +22,9 @@ type UserInfo struct {
 	Username   string      `json:"username"`
 }
 
+// 免验证接口
+var allow []string
+
 // VerifyAuth
 // @Description: 鉴权中间件
 // @return gin.HandlerFunc
@@ -31,12 +34,7 @@ func VerifyAuth() gin.HandlerFunc {
 
 		fmt.Println(RequestURI)
 
-		// 免验证接口
-		allowInterface := []string{
-			// "/",
-		}
-
-		for _, v := range allowInterface {
+		for _, v := range allow {
 			if RequestURI == v {
 				c.Next()
 				return
@@ -44,5 +42,12 @@ func VerifyAuth() gin.HandlerFunc {
 		}
 
 		c.Next()
+	}
+}
+
+func init() {
+	// 无需验证token的接口
+	allow = []string{
+		// "/demo/demo/list",
 	}
 }

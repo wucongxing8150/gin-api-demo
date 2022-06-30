@@ -12,17 +12,17 @@ type Redis struct {
 func GetDevRedis() *Redis {
 	return &Redis{
 		Host:     viper.GetString("dev-redis.host"),
-		Port:     viper.GetInt("dev-database.port"),
-		Password: viper.GetString("dev-database.password"),
-		PoolSize: viper.GetInt("dev-database.pool-size"),
+		Port:     viper.GetInt("dev-redis.port"),
+		Password: viper.GetString("dev-redis.password"),
+		PoolSize: viper.GetInt("dev-redis.pool-size"),
 	}
 }
 
 func GetMasterRedis() *Redis {
 	return &Redis{
 		Host:     viper.GetString("master-redis.host"),
-		Port:     viper.GetInt("master-database.port"),
-		Password: viper.GetString("master-database.password"),
-		PoolSize: viper.GetInt("master-database.pool-size"),
+		Port:     viper.GetInt("master-redis.port"),
+		Password: viper.GetString("master-redis.password"),
+		PoolSize: viper.GetInt("master-redis.pool-size"),
 	}
 }

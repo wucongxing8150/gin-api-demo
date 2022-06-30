@@ -21,10 +21,10 @@ var m *Config.Mysql
 func Init() *gorm.DB {
 	var err error
 
-	if viper.GetString("env") == "dev" {
-		m = Config.GetDevMysql()
-	} else {
+	if viper.GetString("env") == "product" {
 		m = Config.GetMasterMysql()
+	} else {
+		m = Config.GetDevMysql()
 	}
 
 	dsn := fmt.Sprintf("%s:%s@(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local&timeout=%s", m.Username,

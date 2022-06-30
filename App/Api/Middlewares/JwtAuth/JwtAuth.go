@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// 免验证接口
 var allow []string
 
 func JwtAuth() gin.HandlerFunc {

@@ -30,7 +30,7 @@ master-database:
 
 # 测试redis
 dev-redis:
-  host: localhost
+  host: 127.0.0.1
   port: 6379
   password: Wucongxing1..
   pool-size: 100

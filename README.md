@@ -7,6 +7,7 @@
 - 模型：gorm.io/gorm
 - 配置：github.com/spf13/viper
 - 校检：github.com/go-playground/validator/v10 已支持自定义错误内容
+- 验证：github.com/golang-jwt/jwt/v4（原https://github.com/dgrijalva/jwt-go）
 
 ## 目录结构
 
