@@ -1,0 +1,32 @@
+port: 8198 # 启动端口
+
+env: dev # 环境配置
+
+# [数据库配置]
+mysql:
+  host: 'xxx'
+  username: root
+  password: 'xxx'
+  port: 30001
+  db-name: internet_hospital
+  max-idle-cons: 5
+  max-open-cons: 20
+  debug: true
+
+log:
+  file-path: "./log/"
+  file-name: "xxx.log"
+
+# [redis]
+redis:
+  host: 'xxx'
+  port: 6379
+  password: xxx
+  pool-size: 100
+
+# [jwt]
+jwt:
+  sign-key: 123456 # 私钥
+  ttl : 48 # 过期时间 小时
+  algo : HS256 # 加密方式
+  
